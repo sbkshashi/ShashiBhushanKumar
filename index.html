@@ -3,294 +3,846 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shashi Bhushan Kumar - Resume</title>
-    <!-- Tailwind CSS CDN for styling -->
+    <title>Shashi Bhushan Kumar - Portfolio/Resume</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Font: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujlZH/zQ2S6Xj4hFh3R72l+z1QG+f+0v0Zz5+6v5+0w+0w+0w+0w+0w+0w+0w+0w+0w+0w+0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* Apply Inter font to the entire body */
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top to allow scrolling if content is long */
+            min-height: 100vh; /* Ensure it takes full viewport height */
+            padding: 2rem 1rem; /* Add some padding around the content */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+        .wrapper {
+            max-width: 1000px; /* Max width for the entire application */
+            width: 100%;
+            background-color: #ffffff; /* White background for the content area */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            border-radius: 1.5rem; /* More rounded corners for the main container */
+            padding: 2.5rem; /* Generous padding inside the container */
+            display: flex;
+            flex-direction: column;
+            gap: 2rem; /* Space between header, nav, and content */
+        }
+        .app-header {
+            text-align: center;
+            margin-bottom: 1rem; /* Space between header and nav */
+        }
+        .app-header h1 {
+            font-size: 4.5rem; /* Larger name */
+            font-weight: 900; /* Extra bold */
+            color: #1a202c; /* Darker text */
+            margin-bottom: 0.5rem;
+            line-height: 1; /* Tighter line height */
+            letter-spacing: -0.05em; /* Slightly tighter letter spacing */
+        }
+        .app-header p {
+            font-size: 1.5rem;
+            color: #4a5568;
+            font-weight: 300; /* Lighter weight */
+        }
+
+        .main-nav {
+            border-bottom: 1px solid #e2e8f0; /* Subtle separator below nav */
+            padding-bottom: 1.5rem; /* Space below nav */
+            margin-bottom: 1.5rem; /* Space between nav and content area */
+        }
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* More compact for nav */
+            gap: 1rem; /* Space between thumbnails */
+            justify-items: center; /* Center thumbnails within their grid cells */
+        }
+        .thumbnail-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 0.5rem; /* Smaller padding for nav items */
+            background-color: #f8fafc; /* Light background for thumbnails */
+            border-radius: 0.75rem; /* Rounded corners for thumbnails */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out; /* Smooth transition for hover and active */
+            text-decoration: none; /* Remove underline from links */
+            color: #334155; /* Dark gray text color */
+            font-weight: 600; /* Semi-bold text */
+            text-align: center;
+            width: 100%; /* Ensure thumbnails take full width of their grid cell */
+            max-width: 120px; /* Max width for individual thumbnail */
+            cursor: pointer; /* Indicate clickable */
+            font-size: 0.85rem; /* Smaller font for nav items */
+        }
+        .thumbnail-link:hover {
+            transform: translateY(-3px); /* Lift effect on hover */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+            background-color: #e0f2fe; /* Light blue on hover */
+        }
+        .thumbnail-link.active {
+            background-color: #3b82f6; /* Blue background for active link */
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px); /* Slight lift */
+        }
+        .thumbnail-link.active .thumbnail-icon {
+            color: white; /* White icon for active link */
+        }
+        .thumbnail-icon {
+            font-size: 2rem; /* Smaller icon size for nav */
+            margin-bottom: 0.5rem;
+            color: #3b82f6; /* Blue icon color */
+            transition: color 0.2s ease-in-out;
+        }
+
+        .content-area {
+            flex-grow: 1; /* Allows content area to take available space */
+            display: flex; /* To ensure page sections inside can be flexed */
+            flex-direction: column;
+            align-items: center; /* Center content within the area */
+            text-align: center; /* Ensure text is centered by default */
+        }
+        .page-section {
+            display: none; /* Hidden by default */
+            width: 100%; /* Take full width of content-area */
+            flex-direction: column; /* Ensure content stacks vertically */
+            gap: 1.5rem;
+            padding: 0 1rem; /* Add some horizontal padding */
+            box-sizing: border-box;
+        }
+        .page-section.active {
+            display: flex; /* Show active page */
+        }
+
+        /* Home Page Specific Styles */
+        #home-page .intro-summary {
+            font-size: 1.1rem;
+            color: #475569;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+            margin-bottom: 2rem;
+        }
+
+        /* Common styles for sub-pages (headings, cards, lists) */
+        .page-section h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 2rem;
+        }
+        .page-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+        }
+        .card {
+            background-color: #f8fafc;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-align: left;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            width: 100%;
+            max-width: 800px; /* Max width for cards */
+            margin: 0 auto; /* Center cards */
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .list-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .list-tag {
+            background-color: #e0f2fe; /* Light blue for tags */
+            color: #0c4a6e; /* Darker blue text */
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; /* Fully rounded pill shape */
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Specific overrides for sub-page elements */
+        .project-links a, .certification-link, .download-button {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .project-links a:hover, .certification-link:hover, .download-button:hover {
+            background-color: #2563eb;
+        }
+        /* Contact page specific styles */
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #334155;
+            justify-content: center; /* Center contact info */
+        }
+        .contact-info i {
+            color: #3b82f6;
+            font-size: 1.5rem;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .social-link {
+            font-size: 2.5rem;
+            color: #3b82f6;
+            transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+        }
+        .social-link:hover {
+            color: #2563eb;
+            transform: translateY(-3px);
+        }
+
+        /* NEW: Compact Contact Footer Style */
+        .compact-contact-footer {
+            margin-top: 3rem; /* Space above the footer */
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0; /* Separator line */
+            text-align: center;
+            width: 100%;
+        }
+        .compact-contact-footer p {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+        .compact-contact-footer .social-links {
+            margin-top: 0; /* Override default margin */
+            gap: 1rem; /* Smaller gap for compact version */
+        }
+        .compact-contact-footer .social-link {
+            font-size: 1.8rem; /* Smaller icons for compact version */
+        }
+        .compact-contact-footer .social-link:hover {
+            transform: translateY(-2px);
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .wrapper {
+                padding: 1.5rem;
+                border-radius: 1rem;
+                gap: 1.5rem;
+            }
+            .app-header h1 {
+                font-size: 3.5rem;
+            }
+            .app-header p {
+                font-size: 1.2rem;
+            }
+            .main-nav {
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+            }
+            .thumbnail-grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                gap: 0.75rem;
+            }
+            .thumbnail-link {
+                padding: 0.6rem 0.4rem;
+                max-width: 100px;
+                font-size: 0.75rem;
+            }
+            .thumbnail-icon {
+                font-size: 1.5rem;
+            }
+            .page-section h1 {
+                font-size: 2.5rem;
+            }
+            .page-section h2 {
+                font-size: 1.5rem;
+            }
+            .card {
+                padding: 1.5rem;
+            }
+            .list-tag {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            .project-title, .degree, .job-title, .certification-title {
+                font-size: 1.25rem;
+            }
+            .project-description, .company-name, .university, .dates, .responsibilities-list, .details-list, .contact-info p {
+                font-size: 0.9rem;
+            }
+            .project-links {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            .download-icon {
+                font-size: 3rem;
+            }
+            .download-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            .social-link {
+                font-size: 2rem;
+            }
+            .compact-contact-footer .social-link {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-header h1 {
+                font-size: 2.8rem;
+            }
+            .app-header p {
+                font-size: 1rem;
+            }
+            .thumbnail-grid {
+                grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+                gap: 0.5rem;
+            }
+            .thumbnail-link {
+                padding: 0.5rem 0.25rem;
+                max-width: 90px;
+                font-size: 0.7rem;
+            }
+            .thumbnail-icon {
+                font-size: 1.2rem;
+            }
+            .page-section h1 {
+                font-size: 2rem;
+            }
+            .card {
+                padding: 1rem;
+            }
+            .contact-info p {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .compact-contact-footer .social-link {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 p-4 sm:p-6 md:p-8">
-    <!-- Main container for the resume, centered and styled -->
-    <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-
-        <!-- Header section with name, title, and contact information -->
-        <header class="bg-blue-700 text-white p-6 rounded-t-lg">
-            <h1 class="text-3xl sm:text-4xl font-bold mb-2">Shashi Bhushan Kumar</h1>
-            <p class="text-xl sm:text-2xl font-semibold mb-4">Principal Consultant, Wipro Limited</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm sm:text-base">
-                <!-- Contact details with responsive layout -->
-                <div><span class="font-semibold">Location:</span> London, UK</div>
-                <div><span class="font-semibold">Phone:</span> +44-7767574893</div>
-                <div><span class="font-semibold">Email:</span> <a href="mailto:sbk.gupta1@gmail.com" class="text-blue-200 hover:underline rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-300">sbk.gupta1@gmail.com</a></div>
-                <div><span class="font-semibold">LinkedIn:</span> <a href="https://www.linkedin.com/in/shashi-bhushan-kumar-89b83842/" target="_blank" class="text-blue-200 hover:underline rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-300">LinkedIn Profile</a></div>
-                <div><span class="font-semibold">GitHub:</span> <a href="https://github.com/sbkshashi" target="_blank" class="text-blue-200 hover:underline rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-300">GitHub Profile</a></div>
-            </div>
+<body>
+    <div class="wrapper">
+        <!-- Global Header (Always visible) -->
+        <header class="app-header">
+            <h1>Shashi Bhushan Kumar</h1>
+            <p>PRINCIPAL CONSULTANT</p>
         </header>
 
-        <!-- Main content area for resume sections -->
-        <main class="p-6">
+        <!-- Global Navigation (Always visible) -->
+        <nav class="main-nav">
+            <div class="thumbnail-grid" id="main-nav-thumbnails">
+                <a class="thumbnail-link" data-page="home-page">
+                    <i class="fas fa-home thumbnail-icon"></i>
+                    <span>Home</span>
+                </a>
+                <a class="thumbnail-link" data-page="skills-page">
+                    <i class="fas fa-tools thumbnail-icon"></i>
+                    <span>Skills</span>
+                </a>
+                <a class="thumbnail-link" data-page="projects-page">
+                    <i class="fas fa-project-diagram thumbnail-icon"></i>
+                    <span>Projects</span>
+                </a>
+                <a class="thumbnail-link" data-page="certifications-page">
+                    <i class="fas fa-certificate thumbnail-icon"></i>
+                    <span>Certifications</span>
+                </a>
+                <a class="thumbnail-link" data-page="technologies-page">
+                    <i class="fas fa-laptop-code thumbnail-icon"></i>
+                    <span>Tech</span>
+                </a>
+                <a class="thumbnail-link" data-page="experience-page">
+                    <i class="fas fa-briefcase thumbnail-icon"></i>
+                    <span>Exp.</span>
+                </a>
+                <a class="thumbnail-link" data-page="education-page">
+                    <i class="fas fa-graduation-cap thumbnail-icon"></i>
+                    <span>Edu.</span>
+                </a>
+                <a class="thumbnail-link" data-page="resume-page">
+                    <i class="fas fa-file-alt thumbnail-icon"></i>
+                    <span>Resume</span>
+                </a>
+                <a class="thumbnail-link" data-page="contact-page">
+                    <i class="fas fa-envelope thumbnail-icon"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+        </nav>
 
-            <!-- Summary Section -->
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold border-b-2 border-blue-600 pb-2 mb-4">SUMMARY</h2>
-                <p class="mb-4 leading-relaxed">I bring a unique combination of consulting expertise with an intimate knowledge on organizations from service-oriented approach to a client operated prospective. Major strength including face to face consulting. Possess a mix knowledge and practical experience in scrum master, geoscience application consultant, Data analytics, cloud migrations, standard setter. I am very smart, hardworking, Quick learner, team player and go to person in teams/projects. I am a passionate, self-motivated, problem solver who enjoys working with people. My life philosophy is simple: “Do good work, pay it forward” – Mark Lacour.</p>
-                <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                    <li>Experience of 11+ years in IT Industry. Currently working as senior consultant for Wipro technologies.</li>
-                    <li>Worked as Scrum Master, Oil and Gas consultant, Business Analyst, System, and admin Analysts along with technical lead, delivery lead, Release Lead, and senior consultant.</li>
-                    <li>Helping clients maximize their operations and technologies.</li>
-                    <li>Functional and Technical experiences in Energy, Oil and Gas, Financial services, Securities, Telecommunication.</li>
-                    <li>Multiple years of experience in working closely with client, in developing and leading business critical applications.</li>
-                    <li>Excellent Analytic and Analysis skills.</li>
-                    <li>All major type of License Management and daemon tools knowledge.</li>
-                    <li>Effective communication and Strong Vendor and Client Management skills.</li>
-                    <li>Guiding team to resolve technical challenges and troubleshooting.</li>
-                </ul>
-            </section>
-
-            <!-- Highlights Section -->
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold border-b-2 border-blue-600 pb-2 mb-4">HIGHLIGHTS</h2>
-                <div class="space-y-4">
-                    <div>
-                        <h3 class="text-lg font-semibold mb-1">INDUSTRIAL DOMAINS:</h3>
-                        <p class="text-gray-700">Oil and Gas, Energy, Financial services, Securities, Telecommunication</p>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-1">PLATFORMS/FRAMEWORKS:</h3>
-                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                            <li>Agile Frameworks: certified Scrum Master (PSM 1)</li>
-                            <li>Data Analytics and Visualization: Power BI, SQL.</li>
-                            <li>Cloud: Azure, Azure DevOps</li>
-                            <li>Versioning & release management: Git, ClearCase, ClearQuest, SVN, CVS.</li>
-                            <li>Basic: GCP, AWS Cloud Practitioner Essentials, Python, Ansible.</li>
-                            <li>License Management tool: OpeniT, OpenLM, Flexera</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-1">UNDERSTANDING of LANGUAGES & DATABASES:</h3>
-                        <p class="text-gray-700">Python, Shell Scripts, HTML, CSS, Oracle, SQL, PL/SQL, Core Java, PowerShell.</p>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-1">TRAININGS:</h3>
-                        <p class="text-gray-700">Agile, scrum, Product Owner, Azure cloud, Ansible, Python, DevOps tools and process, Continuous integration – Jenkins, Chef, Maven; Git and GitHub, Dockers.</p>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold mb-1">Inspire to Learn:</h3>
-                        <p class="text-gray-700">Terraform, AI &ML, Agile, SAFe and lean methodologies.</p>
+        <!-- Dynamic Content Area -->
+        <div class="content-area">
+            <!-- Home Page Content -->
+            <div id="home-page" class="page-section">
+                <section class="intro-summary">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">About Me</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+                        I bring a unique combination of consulting expertise with an intimate knowledge on organizations from service-oriented approach to a client operated prospective. Major strength including face to face consulting. Possess a mix knowledge and practical experience in scrum master, geoscience application consultant, Data analytics, cloud migrations, standard setter. I am very smart, hardworking, Quick learner, team player and go to person in teams/projects. I am a passionate, self-motivated, problem solver who enjoys working with people. My life philosophy is simple: “Do good work, pay it forward” – Mark Lacour. Experience of 11+ years in IT Industry. Currently working as senior consultant for Wipro technologies.
+                    </p>
+                </section>
+                <div class="compact-contact-footer">
+                    <p>Connect with me:</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- Certifications Section -->
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold border-b-2 border-blue-600 pb-2 mb-4">CERTIFICATIONS</h2>
-                <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                    <li>Microsoft Azure Certifications</li>
-                    <li>AZ-900: <a href="https://www.credly.com/badges/4accfb63-d089-44e7-9cce-eca044bc8666/public_url" target="_blank" class="text-blue-600 hover:underline rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-300">Link</a></li>
-                    <li>AI-900: <a href="https://www.credly.com/badges/659e44a3-afe5-4bd8-b2da-48d413ac8909/public_url" target="_blank" class="text-blue-600 hover:underline rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-300">Link</a></li>
-                    <li>AZ-104: <a href="https://www.credly.com/badges/8e3fd6eb-c2c7-43b1-9b93-1cb4f6bd5040/public_url" target="_blank" class="text-blue-600 hover:underline rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-300">Link</a></li>
-                    <li>Scrum Master Certification</li>
-                    <li>PSM 1: <a href="https://www.credly.com/badges/aee16dea-3cb4-4cc2-9d27-3a23cd1104d1/public_url" target="_blank" class="text-blue-600 hover:underline rounded-sm focus:outline-none focus:ring-2 focus:ring-blue-300">Link</a></li>
-                </ul>
-            </section>
+            <!-- Skills Page Content -->
+            <div id="skills-page" class="page-section">
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-6">My Skills</h1>
 
-            <!-- Recognitions Section -->
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold border-b-2 border-blue-600 pb-2 mb-4">RECOGNITIONS</h2>
-                <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                    <li>Appreciations from previous and current Clients at least one every month.</li>
-                    <li>Award for best technical/process/domain innovation expert from “Wipro” for “CBS-WEB” project.</li>
-                    <li>Received “FEATHER IN MY CAP” for “CBS-WEB” project.</li>
-                    <li>Recommendation from WIPRO for technical expertise.</li>
-                    <li>Recognized for excellent performance in Power BI visualization.</li>
-                    <li>Received best performer and Unit award for recent work with Client.</li>
-                    <li>Multiple Badge holder from Wipro based on work and Client feedbacks.</li>
-                </ul>
-            </section>
+                <div class="card">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Programming Languages & Databases</h2>
+                    <div class="list-items">
+                        <span class="list-tag">Python</span>
+                        <span class="list-tag">Shell Scripts</span>
+                        <span class="list-tag">HTML</span>
+                        <span class="list-tag">CSS</span>
+                        <span class="list-tag">Oracle</span>
+                        <span class="list-tag">SQL</span>
+                        <span class="list-tag">PL/SQL</span>
+                        <span class="list-tag">Core Java</span>
+                        <span class="list-tag">PowerShell</span>
+                    </div>
+                </div>
 
-            <!-- Experience Section -->
-            <section class="mb-8">
-                <h2 class="text-2xl font-bold border-b-2 border-blue-600 pb-2 mb-4">EXPERIENCE</h2>
+                <div class="card">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Frameworks & Platforms</h2>
+                    <div class="list-items">
+                        <span class="list-tag">Agile Frameworks</span>
+                        <span class="list-tag">Azure</span>
+                        <span class="list-tag">Azure DevOps</span>
+                        <span class="list-tag">GCP (Basic)</span>
+                        <span class="list-tag">AWS Cloud Practitioner Essentials (Basic)</span>
+                        <span class="list-tag">Ansible (Basic)</span>
+                    </div>
+                </div>
 
-                <!-- Job Entry: SCRUM MASTER, WIPRO LTD -->
-                <div class="mb-6 border-b pb-4 last:border-b-0">
-                    <h3 class="text-xl font-semibold text-blue-700">SCRUM MASTER, WIPRO LTD</h3>
-                    <p class="text-gray-600">JUNE 2020 - TILL DATE | Client – BP – London, UK</p>
-                    <p class="mt-2 mb-2 leading-relaxed"><strong>Description:</strong> BP Platform and Geoscience Application Service: As scrum master, I am leading license team under, where we manage full client license stack. We are bringing a market leading License management tool, which bring big saving and automation to company. All the work is managed using scrum framework.</p>
-                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                        <li>Managing and maintaining 200+ license servers on azure cloud.</li>
-                        <li>Managing vendor engagement on daily and as required.</li>
-                        <li>Engagement with other service line for work managements.</li>
-                        <li>Using ADO (Azure DevOps) for day-to-day work.</li>
+                <div class="card">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Data Analytics & Visualization</h2>
+                    <div class="list-items">
+                        <span class="list-tag">Power BI</span>
+                        <span class="list-tag">SQL</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Versioning & Release Management</h2>
+                    <div class="list-items">
+                        <span class="list-tag">Git</span>
+                        <span class="list-tag">ClearCase</span>
+                        <span class="list-tag">ClearQuest</span>
+                        <span class="list-tag">SVN</span>
+                        <span class="list-tag">CVS</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">License Management Tools</h2>
+                    <div class="list-items">
+                        <span class="list-tag">OpeniT</span>
+                        <span class="list-tag">OpenLM</span>
+                        <span class="list-tag">Flexera</span>
+                    </div>
+                </div>
+                <div class="compact-contact-footer">
+                    <p>Connect with me:</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Page Content (No specific projects in the provided resume, so keeping placeholders or general info) -->
+            <div id="projects-page" class="page-section">
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-6">My Projects</h1>
+
+                <div class="card">
+                    <h3 class="project-title">BP Platform and Geoscience Application Service (Scrum Master)</h3>
+                    <p class="project-description">
+                        Led license team, managing full client license stack and bringing a market leading License management tool for cost saving and automation. Managed and maintained 200+ license servers on Azure cloud. Designed processes and standards for Client. Performed scrum ceremonies and guided teams on Scrum Methodology.
+                    </p>
+                    <div class="list-items">
+                        <span class="list-tag">Azure Cloud</span>
+                        <span class="list-tag">Azure DevOps (ADO)</span>
+                        <span class="list-tag">Scrum</span>
+                        <span class="list-tag">License Management</span>
+                        <span class="list-tag">Data Analytics</span>
+                    </div>
+                    <div class="project-links mt-4 flex justify-start">
+                        <!-- No specific project links available in resume -->
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="project-title">BP Platform and Upstream Team (SRE Platform Engineer)</h3>
+                    <p class="project-description">
+                        Worked with developers and stakeholders to identify necessary Azure resources and automate their provisioning. Wrote and maintained Infrastructure as Code (IaC) using ARM templates and Terraform. Created pipelines for code movement and infrastructure provisioning. Provided support for applications on on-Prem and Azure Cloud.
+                    </p>
+                    <div class="list-items">
+                        <span class="list-tag">Azure Cloud</span>
+                        <span class="list-tag">ARM Templates</span>
+                        <span class="list-tag">Terraform</span>
+                        <span class="list-tag">PowerShell</span>
+                        <span class="list-tag">MSIX</span>
+                    </div>
+                    <div class="project-links mt-4 flex justify-start">
+                        <!-- No specific project links available in resume -->
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="project-title">BP Platform and Upstream Team (Business Analyst, Senior Consultant)</h3>
+                    <p class="project-description">
+                        Responsible for Development, Support, and maintenance for different sets of applications and their infrastructures. Developed a platform with major oil and gas applications including frontend, backend, and licensing. Involved in cloud migration of frontend apps, backend, and middle layers. Developed multiple and complex Power BI reports.
+                    </p>
+                    <div class="list-items">
+                        <span class="list-tag">Cloud Migration</span>
+                        <span class="list-tag">Power BI</span>
+                        <span class="list-tag">Windows SCCM</span>
+                    </div>
+                    <div class="project-links mt-4 flex justify-start">
+                        <!-- No specific project links available in resume -->
+                    </div>
+                </div>
+                <div class="compact-contact-footer">
+                    <p>Connect with me:</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications Page Content -->
+            <div id="certifications-page" class="page-section">
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Certifications</h1>
+
+                <div class="card">
+                    <h3 class="certification-title">AZ-900: Microsoft Azure Fundamentals</h3>
+                    <p class="certification-issuer">Microsoft Azure Certifications</p>
+                    <p class="certification-date">Issued: N/A</p>
+                    <a href="https://www.credly.com/badges/4accfb63-d089-44e7-9cce-eca044bc8666/public_url" class="certification-link" target="_blank">View Credential</a>
+                </div>
+
+                <div class="card">
+                    <h3 class="certification-title">AI-900: Microsoft Azure AI Fundamentals</h3>
+                    <p class="certification-issuer">Microsoft Azure Certifications</p>
+                    <p class="certification-date">Issued: N/A</p>
+                    <a href="https://www.credly.com/badges/659e44a3-afe5-4bd8-b2da-48d413ac8909/public_url" class="certification-link" target="_blank">View Credential</a>
+                </div>
+
+                <div class="card">
+                    <h3 class="certification-title">AZ-104: Microsoft Azure Administrator Associate</h3>
+                    <p class="certification-issuer">Microsoft Azure Certifications</p>
+                    <p class="certification-date">Issued: N/A</p>
+                    <a href="https://www.credly.com/badges/8e3fd6eb-c2c7-43b1-9b93-1cb4f6bd5040/public_url" class="certification-link" target="_blank">View Credential</a>
+                </div>
+
+                <div class="card">
+                    <h3 class="certification-title">Professional Scrum Master I (PSM I)</h3>
+                    <p class="certification-issuer">Scrum Master Certification</p>
+                    <p class="certification-date">Issued: N/A</p>
+                    <a href="https://www.credly.com/badges/aee16dea-3cb4-4cc2-9d27-3a23cd1104d1/public_url" class="certification-link" target="_blank">View Credential</a>
+                </div>
+                <div class="compact-contact-footer">
+                    <p>Connect with me:</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technologies Page Content -->
+            <div id="technologies-page" class="page-section">
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Technologies I Use</h1>
+
+                <div class="card">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Cloud & DevOps</h2>
+                    <div class="list-items">
+                        <div class="list-tag tech-item"><i class="fab fa-microsoft thumbnail-icon"></i><span>Azure</span></div>
+                        <div class="list-tag tech-item"><i class="fab fa-google thumbnail-icon"></i><span>GCP (Basic)</span></div>
+                        <div class="list-tag tech-item"><i class="fab fa-aws thumbnail-icon"></i><span>AWS (Basic)</span></div>
+                        <div class="list-tag tech-item"><img src="https://placehold.co/40x40/505050/ffffff?text=ADO" alt="Azure DevOps" class="thumbnail-icon"><span>Azure DevOps</span></div>
+                        <div class="list-tag tech-item"><i class="fab fa-jenkins thumbnail-icon"></i><span>Jenkins</span></div>
+                        <div class="list-tag tech-item"><i class="fab fa-docker thumbnail-icon"></i><span>Docker</span></div>
+                        <div class="list-tag tech-item"><img src="https://placehold.co/40x40/F05032/ffffff?text=Git" alt="Git" class="thumbnail-icon"><span>Git</span></div>
+                        <div class="list-tag tech-item"><i class="fab fa-github thumbnail-icon"></i><span>GitHub</span></div>
+                        <div class="list-tag tech-item"><img src="https://placehold.co/40x40/FF6600/ffffff?text=Ans" alt="Ansible" class="thumbnail-icon"><span>Ansible</span></div>
+                        <div class="list-tag tech-item"><img src="https://placehold.co/40x40/D64635/ffffff?text=Chef" alt="Chef" class="thumbnail-icon"><span>Chef</span></div>
+                        <div class="list-tag tech-item"><img src="https://placehold.co/40x40/C72E31/ffffff?text=Mav" alt="Maven" class="thumbnail-icon"><span>Maven</span></div>
+                        <div class="list-tag tech-item"><img src="https://placehold.co/40x40/7B42BC/ffffff?text=TF" alt="Terraform" class="thumbnail-icon"><span>Terraform</span></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Languages & Databases</h2>
+                    <div class="list-items">
+                        <div class="list-tag tech-item"><i class="fab fa-python thumbnail-icon"></i><span>Python</span></div>
+                        <div class="list-tag tech-item"><img src="https://placehold.co/40x40/000000/ffffff?text=Shell" alt="Shell Scripts" class="thumbnail-icon"><span>Shell Scripts</span></div>
+                        <div class="list-tag tech-item"><i class="fab fa-html5 thumbnail-icon"></i><span>HTML</span></div>
+                        <div class="list-tag tech-item"><i class="fab fa-css3-alt thumbnail-icon"></i><span>CSS</span></div>
+                        <div class="list-tag tech-item"><i class="fab fa-java thumbnail-icon"></i><span>Core Java</span></div>
+                        <div class="list-tag tech-item"><img src="https://placehold.co/40x40/C62828/ffffff?text=SQL" alt="SQL" class="thumbnail-icon"><span>SQL</span></div>
+                        <div class="list-tag tech-item"><img src="https://placehold.co/40x40/C62828/ffffff?text=PL/SQL" alt="PL/SQL" class="thumbnail-icon"><span>PL/SQL</span></div>
+                        <div class="list-tag tech-item"><img src="https://placehold.co/40x40/F80000/ffffff?text=Oracle" alt="Oracle" class="thumbnail-icon"><span>Oracle</span></div>
+                        <div class="list-tag tech-item"><img src="https://placehold.co/40x40/0078D4/ffffff?text=PS" alt="PowerShell" class="thumbnail-icon"><span>PowerShell</span></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Data & Analytics</h2>
+                    <div class="list-items">
+                        <div class="list-tag tech-item"><img src="https://placehold.co/40x40/F2C811/000000?text=PBI" alt="Power BI" class="thumbnail-icon"><span>Power BI</span></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Tools & Others</h2>
+                    <div class="list-items">
+                        <span class="list-tag">OpeniT</span>
+                        <span class="list-tag">OpenLM</span>
+                        <span class="list-tag">Flexera</span>
+                        <span class="list-tag">ClearCase</span>
+                        <span class="list-tag">ClearQuest</span>
+                        <span class="list-tag">SVN</span>
+                        <span class="list-tag">CVS</span>
+                        <span class="list-tag">Jira</span>
+                    </div>
+                </div>
+                <div class="compact-contact-footer">
+                    <p>Connect with me:</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experience Page Content -->
+            <div id="experience-page" class="page-section">
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Work Experience</h1>
+
+                <div class="card">
+                    <h3 class="project-title">Scrum Master</h3>
+                    <p class="text-xl font-semibold text-gray-700 mb-1">WIPRO LTD</p>
+                    <p class="text-md text-gray-600 mb-4">June 2020 - Present</p>
+                    <ul class="list-disc ml-6 text-gray-700 leading-relaxed">
+                        <li>Leading license team, managing full client license stack and bringing a market leading License management tool.</li>
+                        <li>Managing and maintaining 200+ license servers on Azure cloud.</li>
                         <li>Designing Processes and standards for Client.</li>
-                        <li>Workload migration to Azure cloud from on-prem.</li>
-                        <li>Performing scrum ceremony and guiding teams along with service owners on Scrum Methodology.</li>
-                        <li>Implementing, making standard processes to keep service improvement best to client.</li>
-                        <li>Research and evaluation of market leading License Management Tool.</li>
-                        <li>Migrate all licenses to new License Management tool.</li>
-                        <li>Evaluating each application license configuring with New License Management Tool.</li>
-                        <li>Seeing the potentials of tool, we are planning to rollout the tool from Geoscience practice to Enterprise level.</li>
-                        <li>Supporting and managing different license types.</li>
-                        <li>Supporting Business analysist and Product Owners with license renews and analytics.</li>
-                        <li>With my data analytics capabilities, I have helped within, and outside portfolios (POD) make big saving of license usage. This has helped me increase my network at enterprise level. Now license usage data is being used by other team to create great stats and view for better decision making.</li>
+                        <li>Performing scrum ceremonies and guiding teams along with service owners on Scrum Methodology.</li>
+                        <li>Helped make significant savings of license usage with data analytics capabilities.</li>
                     </ul>
                 </div>
 
-                <!-- Job Entry: BP PLATFORM TEAM, SUNBURY - SRE PLATFORM ENGINEER -->
-                <div class="mb-6 border-b pb-4 last:border-b-0">
-                    <h3 class="text-xl font-semibold text-blue-700">BP PLATFORM TEAM, SUNBURY - SRE PLATFORM ENGINEER</h3>
-                    <p class="text-gray-600">NOV 2018 – JUNE 2020 | Client – BP – London, UK</p>
-                    <p class="mt-2 mb-2 leading-relaxed"><strong>Description:</strong> BP Platform and Upstream Team: Worked with developers and key stake holders to identify necessary Azure resources, automate their provisioning. Azure cloud: Azure app services, Azure storage, Azure SQL Database, Virtual machines, Azure AD, Azure search, key vaults, and application registrations. Oil and GAS application support and maintenance: Applications falls under Geoscience, Reservoir Engineer, Geoscience Technologies, Data managers etc…</p>
-                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                        <li>Wrote and maintain Infrastructure as Code (IaC) using ARM templates, Terraform.</li>
+                <div class="card">
+                    <h3 class="project-title">SRE Platform Engineer</h3>
+                    <p class="text-xl font-semibold text-gray-700 mb-1">BP Platform team, Sunbury</p>
+                    <p class="text-md text-gray-600 mb-4">Nov 2018 – June 2020</p>
+                    <ul class="list-disc ml-6 text-gray-700 leading-relaxed">
+                        <li>Worked with developers and key stake holders to identify necessary Azure resources, automate their provisioning.</li>
+                        <li>Wrote and maintained Infrastructure as Code (IaC) using ARM templates, Terraform.</li>
                         <li>Created pipelines for code move and infrastructure provisioning.</li>
-                        <li>Created Azure SQL servers, databases, roles, and users.</li>
-                        <li>Created and Maintained Azure repos for version control.</li>
-                        <li>Worked in close collaboration with developers to ensure high availability & scalability of the solutions deployed on the platform.</li>
-                        <li>Implemented infrastructure compliance and security.</li>
-                        <li>Application packaging application using PowerShell and MSIX.</li>
-                        <li>Provide support for applications on on-Prem and Azure Cloud.</li>
-                        <li>Where possible after covid started providing face to face user supports.</li>
-                        <li>Support provided on both Windows and Linux based applications.</li>
+                        <li>Provided support for applications on on-Prem and Azure Cloud.</li>
                         <li>Expert in providing support on both frontend and backend applications along with licenses.</li>
-                        <li>Guiding other service line where possible.</li>
-                        <li>Very much go to person for our service owners, Business Analyst and Users.</li>
-                        <li>New application evaluation expert.</li>
-                        <li>Excellent is issues troubleshooting and finding root cause analysis.</li>
-                        <li>Excellent analytic senses.</li>
-                        <li>Few named applications by vendor: Schlumberger: Petrel and 80+ 3rd party plugins, Studio Manager, Techlog, GeoX, Petromod etc… Landmark: Nexus Desktop and its tools, DSS. Other apps: RMS, Geoteric, Paleoscan, Cegal (Blueback tools), HRS, Traptesters, Crystal Ball, multiple small apps, Coviz, etc…</li>
                     </ul>
                 </div>
 
-                <!-- Job Entry: BUSINESS ANALIST, SENIOR CONSULTANT, WIPRO LTD -->
-                <div class="mb-6 border-b pb-4 last:border-b-0">
-                    <h3 class="text-xl font-semibold text-blue-700">BUSINESS ANALIST, SENIOR CONSULTANT, WIPRO LTD</h3>
-                    <p class="text-gray-600">MAY 2017 - MAY 2019 | Client – BP – London, UK</p>
-                    <p class="mt-2 mb-2 leading-relaxed"><strong>Description:</strong> BP Platform and Upstream Team: I was responsible for Development, Support, and maintenance for different set of applications and its infrastructures. Responsibility to develop a platform with major oil and gas applications including frontend, backend, and licensing. 1st phase of this project also involved moving all the users Windows 7 to Windows10 operating system. I travelled across BP sites to implements these solutions. Along with started work to migrate platform to Azure cloud.</p>
-                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                        <li>Working with solution manager, Vendor, End users for new application and new version of available applications.</li>
-                        <li>Present applications to CAB meetings and discuss.</li>
-                        <li>Install in Lab for testers and configures if any backend changes required.</li>
-                        <li>Working with windows SCCM team for packaging and make it available to all users and sites.</li>
-                        <li>As part of platform, we have done 2 major and 1 minor releases for clients.</li>
-                        <li>Actively part of cloud migration team.</li>
-                        <li>Cloud migration included frontend apps, backend, and middle layers.</li>
-                        <li>Working with users on cloud requirements and implementations.</li>
+                <div class="card">
+                    <h3 class="project-title">Business Analyst, Senior Consultant</h3>
+                    <p class="text-xl font-semibold text-gray-700 mb-1">WIPRO LTD</p>
+                    <p class="text-md text-gray-600 mb-4">May 2017 - May 2019</p>
+                    <ul class="list-disc ml-6 text-gray-700 leading-relaxed">
+                        <li>Responsible for Development, Support, and maintenance for different set of applications and its infrastructures.</li>
+                        <li>Developed a platform with major oil and gas applications including frontend, backend, and licensing.</li>
+                        <li>Actively part of cloud migration team, including frontend apps, backend, and middle layers.</li>
                         <li>Developed multiple and complex Power BI reports for internal and external uses.</li>
                     </ul>
                 </div>
 
-                <!-- Job Entry: TECHNICAL LEAD, WIPRO LTD (Bangalore - Feb 2016 – Apr 2017) -->
-                <div class="mb-6 border-b pb-4 last:border-b-0">
-                    <h3 class="text-xl font-semibold text-blue-700">TECHNICAL LEAD, WIPRO LTD</h3>
-                    <p class="text-gray-600">FEB 2016 – APR 2017 | Client – BP – Bangalore</p>
-                    <p class="mt-2 mb-2 leading-relaxed"><strong>Description:</strong> BP Platform and Upstream Team: I was responsible for Development, Support, and maintenance for different set of applications and its infrastructures.</p>
-                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                        <li>Acting as single point of contact between client and appropriate vender and groups from solution planning, sizing to fulfillment.</li>
-                        <li>Coordinating with business and IT across all phases of software development and Support life cycle.</li>
-                        <li>Building and maintaining work relationships with the customer, managing customer expectation, and ensuring customer expectation.</li>
-                        <li>Writing complex scripts and doing packaging of applications for different environments.</li>
-                        <li>Global Application Deployment (GAD) Production Support in Linux.</li>
-                        <li>On boarding new users and provide them required access in the system.</li>
-                        <li>Performing OAT (Operations Acceptance Testing), UAT (User Acceptance Testing) and helping teams.</li>
-                        <li>Identifying /Creating Business Opportunities, Understanding Customer Requirements, assisting them in translating these into Functional Requirements.</li>
-                        <li>Checking and managing licensing for the applications and systems.</li>
-                        <li>Prioritize requirements and create conceptual prototype and mock-ups.</li>
-                        <li>Provides references for users by writing and maintaining user documentation.</li>
-                        <li>Granting leave and any other Administrative Functioning of employees working under this program.</li>
-                        <li>Coordinating with different vendors during any upgrades over infrastructure or applications.</li>
-                        <li>Identify and report any innovative processes or activates that could enhance the overall real-time.</li>
+                <div class="card">
+                    <h3 class="project-title">Technical Lead</h3>
+                    <p class="text-xl font-semibold text-gray-700 mb-1">WIPRO LTD</p>
+                    <p class="text-md text-gray-600 mb-4">Feb 2016 – Apr 2017</p>
+                    <ul class="list-disc ml-6 text-gray-700 leading-relaxed">
+                        <li>Acted as single point of contact between client and appropriate vendor and groups from solution planning, sizing to fulfillment.</li>
+                        <li>Coordinated with business and IT across all phases of software development and Support life cycle.</li>
+                        <li>Wrote complex scripts and did packaging of applications for different environments.</li>
+                        <li>Performed OAT (Operations Acceptance Testing), UAT (User Acceptance Testing) and helped teams.</li>
                     </ul>
                 </div>
 
-                <!-- Job Entry: TECHNICAL LEAD, WIPRO LTD (Bangalore - Nov 2014 – Jan 2016) -->
-                <div class="mb-6 border-b pb-4 last:border-b-0">
-                    <h3 class="text-xl font-semibold text-blue-700">TECHNICAL LEAD, WIPRO LTD</h3>
-                    <p class="text-gray-600">NOV 2014 – JAN 2016 | Client – Vodafone UK - Bangalore</p>
-                    <p class="mt-2 mb-2 leading-relaxed"><strong>Description:</strong> VFE WEBMEDTHOD: Unified Communication as part of webMethods Project in Vodafone, aims to support several billing & mediation use cases from three different variants. Its purpose is to automate several billing triggers from SFDC to different systems.</p>
-                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                <div class="card">
+                    <h3 class="project-title">Technical Lead</h3>
+                    <p class="text-xl font-semibold text-gray-700 mb-1">WIPRO LTD</p>
+                    <p class="text-md text-gray-600 mb-4">Nov 2014 – Jan 2016</p>
+                    <ul class="list-disc ml-6 text-gray-700 leading-relaxed">
                         <li>Responsible for development, support, maintenance, and implementation of complex components of a project module.</li>
-                        <li>Works on problems on relatively complex scope. Acquire knowledge of Webservices, stored procedure, BPM and implementing those in current project.</li>
                         <li>Developed solutions on relatively complex tasks for billing systems.</li>
-                        <li>Understanding requirements and Functionality.</li>
-                        <li>Writing High level and low-level design documents.</li>
-                        <li>Working on service and interface developments.</li>
-                        <li>Providing testing support.</li>
-                        <li>Guiding new team joiner and team members.</li>
-                        <li>Tool and Technology: WebMethods, Oracle, SQL, Unix/Linux OS</li>
+                        <li>Wrote High level and low-level design documents.</li>
                     </ul>
                 </div>
+                <div class="compact-contact-footer">
+                    <p>Connect with me:</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
 
-                <!-- Job Entry: TECHNICAL LEAD, WIPRO LTD (Bangalore - Feb 2014 – Oct 2014) -->
-                <div class="mb-6 border-b pb-4 last:border-b-0">
-                    <h3 class="text-xl font-semibold text-blue-700">TECHNICAL LEAD, WIPRO LTD</h3>
-                    <p class="text-gray-600">FEB 2014 – OCT 2014 | Client – State Street - Bangalore</p>
-                    <p class="mt-2 mb-2 leading-relaxed"><strong>Description:</strong> IHADI- Data Integration: Data Movement Project that loads the source data from the Upstream after performing Multiple validations on the received data and finally loads to the downstream database after applying specified business logics. This project included development, Maintenance and Enhancement as project involved, requirements analysis, application support & maintenance, enhancements, production monitoring and support. This project was working on the Agile based methodology.</p>
-                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                        <li>Requirement analysis and estimations for new developments, enhancements, scripts, transformations, and jobs.</li>
-                        <li>Development and unit testing for the new developments and enhancements.</li>
-                        <li>Production Support and Monitoring Systems Production, defects analysis and code fix.</li>
-                        <li>Code Sync Build and deployment on different environments (DEV, UAT and PROD).</li>
-                        <li>Shell scripts, AutoSys jobs, Unix commands for automation of the jobs.</li>
-                        <li>Tool and Technology: Linux/Unix Shell Scripting, Oracle SQL, PL-SQL, Pentaho DI – Kettle, ClearCase, ClearQuest, Jira</li>
+            <!-- Education Page Content -->
+            <div id="education-page" class="page-section">
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Education</h1>
+
+                <div class="card">
+                    <h3 class="project-title">Mater in Technology (M. Tech.) in SE (SOFTWARE ENGINEERING)</h3>
+                    <p class="text-xl font-semibold text-gray-700 mb-1">BIRLA INSTITUTE OF TECHNOLOGY AND SCIENCE, PILANI (RAJASTHAN) INDIA</p>
+                    <p class="text-md text-gray-600 mb-4">CGP score 7.18</p>
+                    <ul class="list-disc ml-6 text-gray-700 leading-relaxed">
+                        <!-- No detailed bullet points in resume -->
                     </ul>
                 </div>
-
-                <!-- Job Entry: TECHNICAL LEAD, WIPRO LTD (Bangalore - Oct 2013 – Feb 2014) -->
-                <div class="mb-6 border-b pb-4 last:border-b-0">
-                    <h3 class="text-xl font-semibold text-blue-700">TECHNICAL LEAD, WIPRO LTD</h3>
-                    <p class="text-gray-600">OCT 2013 – FEB 2014 | Client – State Street - Bangalore</p>
-                    <p class="mt-2 mb-2 leading-relaxed"><strong>Description:</strong> AACP (Asset Arena Client Portal)/ FRANCE NAV PORTAL: Project was a product installation in all the environments (DEV, UAT, BUAT and PROD), product install/configuration purely as per the third-party company guidelines under online guidance of third-party company. This was a migration project to move on-Prem to private cloud. This also included Oracle database. This was 1st project where I was managing and completed in record timeline.</p>
-                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                        <li>Managed 6 members team.</li>
-                        <li>Daily status call and report to client.</li>
-                        <li>Create and amend Unix scripts for product installation.</li>
-                        <li>Make the code change and config changes based on the environments.</li>
-                        <li>Product installation in different environment (DEV, SIT, UAT, BUAT, PROD) and basic specified testing.</li>
-                        <li>Create Autosys JIL jobs for all the environments for the maintenance and archiving of data and logs for both database and Application.</li>
-                        <li>Create TR’s (Technical Requests) with the third-party vendors if any critical issues.</li>
-                        <li>Got this project delivered before proposed timeline.</li>
-                        <li>Tool and Technology: Application migrations, setup, and configurations, Oracle10g (Schema and object creation), ClearCase, ClearQuest, Unix Shell Scripting.</li>
-                    </ul>
+                <div class="compact-contact-footer">
+                    <p>Connect with me:</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
                 </div>
+            </div>
 
-                <!-- Job Entry: SOFTWARE DEVELOPER, WIPRO LTD (Bangalore - Oct 2010 – Dec 2013) -->
-                <div class="mb-6 pb-4 last:border-b-0">
-                    <h3 class="text-xl font-semibold text-blue-700">SOFTWARE DEVELOPER, WIPRO LTD</h3>
-                    <p class="text-gray-600">OCT 2010 – DEC 2013 | Client – State Street - Bangalore</p>
-                    <p class="mt-2 mb-2 leading-relaxed"><strong>Description:</strong> Corporate Billing System (CBS) Cloud Migration: Develop and maintain legacy system written in java. Along with align with the enterprise level platform standardization drive, the CBS-Web application was migrated to the Cloud platform and the database was migrated from Sybase to Oracle. It also involved redesigning the legacy web application.</p>
-                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
-                        <li>Participated and fixed performance issues on oracle store procedures.</li>
-                        <li>Requirement analysis, designing activity, class, and sequence diagram as part of TAD preparation, Coding, JUnit Testing, fixing of bug in SIT and CQ fixes in OAT, UAT and PROD.</li>
-                        <li>Migrating database Sybase to Oracle along with its all objects and attributes.</li>
-                        <li>Responsible for daily builds and deployments of codes.</li>
-                        <li>Managing defects (CQ’s/CR’s) on the clear Quest IBM tool.</li>
-                        <li>Build and Deployment of code - Deploying code on different environments for Integration, System and UAT</li>
-                        <li>Testing and Productions private cloud and On-Prem Environments.</li>
-                        <li>Requirement analysis, designing activity, class, and sequence diagram as part of TAD preparation.</li>
-                        <li>Coding, JUnit Testing, fixing of bug in SIT and CQ fixes in UAT.</li>
-                        <li>Making releases to Production.</li>
-                        <li>Responsible for daily builds and deployments of codes, DB changes, actuate and Jasper reports.</li>
-                        <li>Tool and Technology: Core Java, Servlets, JSP, HTML, XML, Oracle 10g, Sybase, Tomcat5.x, CVS, ClearCase, ClearQuest, Build Forge, Jasper Template, and private cloud.</li>
-                    </ul>
+            <!-- Resume/CV Page Content -->
+            <div id="resume-page" class="page-section">
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Resume / CV</h1>
+
+                <div class="card flex flex-col items-center">
+                    <i class="fas fa-file-alt download-icon text-blue-500 mb-4"></i>
+                    <p class="text-lg text-gray-700 mb-6 text-center">
+                        You can download my full resume in DOCX format below for a detailed overview of my qualifications and experience.
+                    </p>
+                    <a href="Resume_Shashi.docx" class="download-button" download>Download Resume (DOCX)</a>
                 </div>
+                <div class="compact-contact-footer">
+                    <p>Connect with me:</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
 
-            </section>
+            <!-- Contact Page Content (This page will have the full contact details) -->
+            <div id="contact-page" class="page-section">
+                <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Contact Me</h1>
 
-            <!-- Education Section -->
-            <section>
-                <h2 class="text-2xl font-bold border-b-2 border-blue-600 pb-2 mb-4">EDUCATION</h2>
-                <p class="mb-2 text-lg"><strong>Master in Technology (M. Tech.) in SE (SOFTWARE ENGINEERING)</strong></p>
-                <p class="text-gray-600">BIRLA INSTITUTE OF TECHNOLOGY AND SCIENCE, PILANI (RAJASTHAN) INDIA with CGP score 7.18.</p>
-            </section>
+                <div class="card">
+                    <p class="text-lg text-gray-700 mb-6 text-center">
+                        I'm always open to new opportunities and collaborations. Feel free to reach out!
+                    </p>
+                    <div class="contact-info flex flex-col items-center">
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:shashi.kumar@example.com" class="text-blue-600 hover:underline">shashi.kumar@example.com</a></p>
+                        <p><i class="fas fa-phone-alt"></i> <a href="tel:+1234567890" class="text-blue-600 hover:underline">+1 (234) 567-890</a></p>
+                        <p><i class="fas fa-map-marker-alt"></i> London, UK</p>
+                    </div>
 
-        </main>
+                    <div class="social-links">
+                        <a href="#" class="social-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <!-- No compact-contact-footer here as it's the full contact page -->
+            </div>
+        </div>
     </div>
+
+    <script>
+        // JavaScript for single-page navigation
+        const pageSections = document.querySelectorAll('.page-section');
+        const navLinks = document.querySelectorAll('.thumbnail-link');
+
+        function showPage(pageId) {
+            // Hide all page sections
+            pageSections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show the requested page section
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.add('active');
+            }
+
+            // Update active state for navigation links
+            navLinks.forEach(link => {
+                if (link.dataset.page === pageId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Scroll to top of the content area for better UX on navigation
+            const contentArea = document.querySelector('.content-area');
+            if (contentArea) {
+                // For overall page scroll, use:
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Add click listeners to navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default link behavior
+                const pageId = link.dataset.page;
+                showPage(pageId);
+            });
+        });
+
+        // Show the home page and set it as active when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home-page');
+        });
+    </script>
 </body>
 </html>
