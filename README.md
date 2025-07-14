@@ -1,2 +1,2 @@
-# ShashiBhushanKumar.github.io
+# ShashiBhushanKumar
 ShashiBhushanKumar resume
